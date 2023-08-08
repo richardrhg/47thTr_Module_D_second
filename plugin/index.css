@@ -1,0 +1,176 @@
+@keyframes god {
+    0% {
+        box-shadow: 0 0 20px #77f804;
+    }
+    20% {
+        box-shadow: 0 0 20px #0483ff;
+    }
+    40% {
+        box-shadow: 0 0 20px #4800ff;
+    }
+    60% {
+        box-shadow: 0 0 20px #ff008e;
+    }
+    80% {
+        box-shadow: 0 0 20px #f7ff00;
+    }
+    100% {
+        box-shadow: 0 0 20px #77f804;
+    }
+}
+
+.god {
+    animation: god 3s linear infinite;
+}
+
+.tabs {
+    position: relative;
+    clear: both;
+    margin: 25px 0;
+}
+
+.tab label {
+    color: grey;
+    position: relative;
+    /*left: 1px;*/
+    padding: 10px;
+    /*margin-left: -1px;*/
+    transition: .2s;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.tab [type=radio] {
+    display: none;
+}
+
+.content {
+    padding: 20px;
+    display: none;
+}
+
+[type=radio]:checked ~ label {
+    color: white;
+    animation: god 3s linear infinite;
+}
+
+body:has(#tab-1:checked) #content1 {
+    display: block !important;
+}
+
+body:has(#tab-2:checked) #content2 {
+    display: block !important;
+}
+
+body:has(#tab-3:checked) #content3 {
+    display: block !important;
+}
+
+body:has(#tab-4:checked) #content4 {
+    display: block !important;
+}
+
+.main-timeline {
+    position: relative;
+}
+
+.main-timeline::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    background-color: #939597;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px; /* 讓他靠近card上 */
+}
+
+.timeline {
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+}
+
+.timeline:hover > .card {
+    cursor: pointer;
+    animation: god 3s linear infinite;
+}
+
+.timeline::after {
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: -13px;
+    background-color: #939597;
+    border: 5px solid #f5df4d;
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.left {
+    padding: 0 40px 20px 0;
+    left: 0;
+}
+
+.right {
+    padding: 0 0 20px 40px;
+    left: 50%;
+}
+
+.left::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    z-index: 1;
+    right: 30px;
+    border: medium solid white;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent white;
+}
+
+.right::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    z-index: 1;
+    left: 30px;
+    border: medium solid white;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent white transparent transparent;
+}
+
+.right::after {
+    /* 把圈圈調回到中心點 */
+    left: -12px;
+}
+
+@media screen and (max-width: 600px) {
+    .main-timeline::after {
+        /* 移動中心條到最左 */
+        left: 31px;
+    }
+
+    .timeline {
+        /* 讓timeline有個padding，且讓整塊撐滿100% */
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+
+    .timeline::before {
+        left: 60px;
+        border: medium solid white;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent white transparent transparent;
+    }
+
+    .left::after, .right::after {
+        left: 18px;
+    }
+
+    .right {
+        left: 0;
+    }
+}
